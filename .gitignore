@@ -1,3 +1,8 @@
-u2net.onnx
-node_modules
+# Data models
+*.onnx
+
+# Flask/Python stuff:
+instance/
+.webassets-cache
 dist
+__pycache__ 
