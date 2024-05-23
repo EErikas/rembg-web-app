@@ -20,8 +20,8 @@ def upload_file():
             output_image.save(img_io, 'PNG')
             img_io.seek(0)
             # return send_file(img_io, mimetype='image/png')  # Change download in separatre browser tab
-            return send_file(img_io, mimetype='image/png', as_attachment=True, download_name='_rmbg.png')
+            return send_file(img_io, mimetype='image/png', as_attachment=True, download_name=f'{file.filename}_rmbg.png')
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=5100)
+    app.run(host='0.0.0.0', debug=False, port=5100)
