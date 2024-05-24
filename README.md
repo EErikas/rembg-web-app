@@ -17,6 +17,7 @@ You can also pull the prebuilt images from GitHub container repository. This is 
     ```bash
     docker run -p 5100:5100 ghcr.io/eerikas/rembg-web-app:latest
     ```
+**Note:** Currently the Docker container image supports `amd64` and `arm64` architectures.
 
 ### From Source Code using Docker
 Alternatively you can use Docker to run the application from source code. For this method to work you need to have `Docker` installed.
@@ -55,3 +56,32 @@ You can run the application using your local `python` installation. To run the a
      * Running on http://127.0.0.1:5100
     ```
 **NOTE:** If you are using this method, you will also need to download the `u2net.onnx` model for background removal to work. This will be done automatically when uploading image for the first time. The model will be saved in `<your-user-directory>/.u2net/u2net.onnx`
+
+## Running in Production
+It is generally recommended to run services like this behind a reverse proxy. Betlow is an example of `docker-compose.yml` file of how this could be done by using [Traefik](https://traefik.io/traefik/) reverse proxy.
+
+### Compose file
+By following this example the background remover would available at http://localhost 
+```yaml
+version: '3.9'
+services:
+  web-app:
+    image: ghcr.io/eerikas/rembg-web-app:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web-app.rule=Host(`localhost`)"
+      - "traefik.http.services.web-app.loadbalancer.server.port=5100"
+
+  traefik:
+    image: traefik:v2.9
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"  # Traefik Dashboard
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+```
