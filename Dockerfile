@@ -4,6 +4,12 @@ FROM python:3.12-slim
 # copy model to avoid unnecessary download
 ADD https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx /root/.u2net/u2net.onnx
 
+RUN apt update -y
+
+RUN apt install -y --no-install-recommends
+
+RUN apt install -y build-essential
+
 # Install gunicorn WSGI server
 RUN pip install --no-cache-dir gunicorn
 
