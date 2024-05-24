@@ -10,6 +10,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-family: Arial, sans-serif;
       }
 
       .drop-zone {
@@ -27,19 +28,48 @@
       .drop-zone.dragover {
         background-color: #f0f0f0;
       }
+      button{
+        background-color: black;
+      }
+      .form-buttons {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .form-buttons:hover {
+        background-color: #0056b3;
+      }
+
+      .form-buttons:active {
+        background-color: #004085;
+      }
+
+      .form-buttons:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      }
     </style>
   </head>
   <body>
     <div id="dropZone" class="drop-zone">
       <h1>rmbg</h1>
+      <p>Drag and drop image you want to remove background from </p>
       <form
         id="uploadForm"
         action="/"
         method="post"
         enctype="multipart/form-data"
       >
-        <input id="fileInput" type="file" name="file" />
-        <input type="submit" value="rm" />
+        <input class="form-buttons" id="fileInput" type="file" name="file" />
+        <input class="form-buttons" type="submit" value="Remove Background!" />
       </form>
     </div>
 
