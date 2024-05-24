@@ -5,7 +5,7 @@ A simple flask app to remove the background of an image with [Rembg](https://git
 Based on the [tutorial](https://youtu.be/cw34KMPSt4k) on YouTube
 
 ## Running the app
-There are several ways to run this application. No matter which of the options chosen from below. No matter which running option you have selected. The application will be accessibile via the browser on http://loclhost:5100
+There are several ways to run this application. No matter which of the options chosen from below. No matter which running option you have selected. The application will be accessibile via the browser on http://localhost:5100
 
 ### Using Image from Container Repository
 You can also pull the prebuilt images from GitHub container repository. This is the recommended method, as you can easily integrate this container in your workflows (i.e., if you want to use it with other container in a `docker compose` script).
