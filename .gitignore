@@ -6,3 +6,4 @@ instance/
 .webassets-cache
 dist
 __pycache__ 
+env
